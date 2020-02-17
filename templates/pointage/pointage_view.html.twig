@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointage{% endblock %}
+{% block titre_contenu %}Nouveau Pointage{% endblock %}
+{% block body %}
+<div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <div class="col-6">
+                                <h4 class="titre">Pointages</h4></div>
+                            <div class="col-6 text-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="animated fadeInRight delay-1s content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-right">
+                                            <ul class="pagination">
+                                                <li class="page-item noborder litext"><a class="page-link" data-role="button" data-iconpos="left" href="{{path('pointage_list')}}">Retour liste</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" data-role="button" data-icon="arrow-r" data-iconpos="left" href="{{path('pointage_list')}}">
+                                                        </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" data-role="button" data-icon="arrow-l" data-iconpos="left" href="{{path('pointage_list')}}">></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    {% for onepointage in onePointage %}
+                                        <table class="table table-responsive-md table-condensed">
+                                            <tr>
+                                                <th class="fieldrequired">Nom Employ&eacute;</th>
+                                                <td>
+                                                    <div class="refid">{{onepointage.em_prenom}}</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Fieldfk_user_author</th>
+                                                <td>{{onepointage.uo_login}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Etat</td>
+                                                    <td>
+                                                        {% for etat_value in onepointage.po_etat %}
+                                                            {{etat_value }}
+                                                        {% endfor %}
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Date Entr&eacute;e</th>
+                                                <td>{{onepointage.po_pointageArrivee is not null ? onepointage.po_pointageArrivee|date("d/m/Y H:i:s") : onepointage.po_pointageArrivee}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Note Entr&eacute;e</th>
+                                                <td>{{onepointage.po_noteArrivee}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Date Sortie</th>
+                                                <td>{{onepointage.po_pointageDepart is not null  ? onepointage.po_pointageDepart|date("d/m/Y H:i:s") : onepointage.po_pointageDepart}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Note Sortie</th>
+                                                <td>{{onepointage.po_noteDepart}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Cr&eacute;e Le</th>
+                                                <td>{{onepointage.po_creeLe is not null ? onepointage.po_creeLe|date("d/m/Y H:i:s") : onepointage.po_creeLe}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Modifi&eacute; Le</th>
+                                                <td>{{onepointage.po_modifieLe is not null ? onepointage.po_modifieLe|date("d/m/Y H:i:s") : onepointage.po_modifieLe}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Heures Effectu&eacute;es</th>
+                                                <td>{{heure_minutes(onepointage.po_totalMinute)}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Fieldfk_user_modif</th>
+                                                <td>{{onepointage.po_fkUserModif}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Description</th>
+                                                <td>{{onepointage.po_description}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">Actif</th>
+                                                <td>{{onepointage.po_actif == true ? 'Actif ': 'Inactif' }}</td>
+                                            </tr>
+                                        </table>
+                                    <br>
+                                    <div class="clearfix">
+                                        <div class="float-right">
+                                            <div class="float-right"><a class="btn btn-outline-success" href="{{path('pointage_edit',{'rowid': onepointage.po_rowid}) }}">Modifier</a>&nbsp;&nbsp;
+                                                <a class="btn btn-outline-danger" href="{{ path('pointage_delete', {'rowid': onepointage.po_rowid}) }}">Supprimer</a></div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

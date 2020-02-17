@@ -1,0 +1,72 @@
+<?php //%255BApp%255CEntity%255CHoliday%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Index'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Index')),
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone $p['Doctrine\\ORM\\Mapping\\Index'],
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'holiday',
+                'idx_holiday_date_fin',
+                'idx_holiday_fk_user',
+                'idx_holiday_date_create',
+                'idx_holiday_date_debut',
+                'idx_holiday_fk_validator',
+                'idx_holiday_entity',
+                'idx_holiday_fk_user_create',
+            ],
+            'indexes' => [
+                [
+                    $o[1],
+                    $o[2],
+                    $o[3],
+                    $o[4],
+                    $o[5],
+                    $o[6],
+                    $o[7],
+                ],
+            ],
+            'columns' => [
+                1 => [
+                    'date_fin',
+                ],
+                [
+                    'fk_user',
+                ],
+                [
+                    'date_create',
+                ],
+                [
+                    'date_debut',
+                ],
+                [
+                    'fk_validator',
+                ],
+                [
+                    'entity',
+                ],
+                [
+                    'fk_user_create',
+                ],
+            ],
+            'repositoryClass' => [
+                8 => 'App\\Repository\\HolidayRepository',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[8],
+    ],
+    []
+); }];

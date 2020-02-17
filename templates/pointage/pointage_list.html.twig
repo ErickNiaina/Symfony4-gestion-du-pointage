@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointage liste{% endblock %}
+{% block titre_contenu %}Liste Pointage{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+              {% for message in app.flashes('success') %}
+                  <div class="alert alert-success">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+              {% for message in app.flashes('dangerModif') %}
+                  <div class="alert alert-danger">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="toLoad" class="row">
+                            <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                                <table id="example1" class="table table-responsive-xl table-condensed datatable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+                                        <tr class="liste_titre">
+                                            <th class="liste_titre"><a href="">Nom Employ&eacute;</a></th>
+                                            <th class="liste_titre"><a href="">Fieldetat</a></th>
+                                            <th class="liste_titre_sel"><a href="">Date Entr&eacute;e</a><span class="nowrap">&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-down"><i></span></th>
+                                            <th class="liste_titre"><a href="">Note Entr&eacute;e</a></th>
+                                            <th class="liste_titre"><a href="">Date Sortie</a></th>
+                                            <th class="liste_titre"><a href="">Note Sortie</a></th>
+                                            <th class="liste_titre"><a href="/">Heures Effectu&eacute;es</a></th>
+                                            <th class="liste_titre"><a href="">Fielddescription</a></th>
+                                            <th class="liste_titre"><a href="">Cr&eacute;e Le</a></th>
+                                            <th class="liste_titre"><a href="">Fieldfk_user_author</a></th>
+                                            <th class="liste_titre"><a href="">Modifi&eacute; Le</a></th>
+                                            <th class="liste_titre"><a href="">Fieldfk_user_modif</a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                          {% for listpointage in listOfPointage %}
+                                              <tr>
+                                                  <td><a href="{{ path('pointage_view', {'rowid': listpointage.po_rowid}) }}">{{listpointage.em_prenom}}</a></td>
+                                                  <td>
+                                                      {% for etat_value in listpointage.po_etat %}
+                                                          {{etat_value }}
+                                                      {% endfor %}
+                                                  </td>
+                                                  <td>{{listpointage.po_pointageArrivee is not null ? listpointage.po_pointageArrivee|date("d/m/Y H:i:s") : listpointage.po_pointageArrivee}}</td>
+                                                  <td>{{listpointage.po_noteArrivee}}</td>
+                                                  <td>{{listpointage.po_pointageDepart is not null  ? listpointage.po_pointageDepart|date("d/m/Y H:i:s") : listpointage.po_pointageDepart}}</td>
+                                                  <td>{{listpointage.po_noteDepart}}</td>
+                                                  <td>{{heure_minutes(listpointage.po_totalMinute)}}</td>
+                                                  <td>{{listpointage.po_description}}</td>
+                                                  <td>{{listpointage.po_creeLe is not null ? listpointage.po_creeLe|date("d/m/Y H:i:s") : listpointage.po_creeLe}}</td>
+                                                  <td>{{listpointage.uo_login}}</td>
+                                                  <td>{{listpointage.po_modifieLe is not null ? listpointage.po_modifieLe|date("d/m/Y H:i:s") : listpointage.po_modifieLe}}</td>
+                                                  <td>{{listpointage.po_fkUserModif}}</td>
+                                              </tr>
+                                          {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

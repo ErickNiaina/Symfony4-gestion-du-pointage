@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{server_url()}}/op2/public/images/favicon.png" />
+
+        <!-- Google Font: Open Sans + Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+        rel="stylesheet" type='text/css' media='all' />
+    
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="{{server_url()}}/op2/public/plugins/fontawesome-free/css/all.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+        
+        <!-- Daterange picker -->
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/dist/css/jquery-ui-timepicker-addon.css">
+        
+        <!-- Select2 -->
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+        
+        <!-- bootstrap 4 
+        <link rel="stylesheet" href="{{server_url()}}/op2/public/dist/css/bootstrap.min.css">-->
+        
+        <!-- Tempusdominus -->
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        
+        <!-- Theme style -->
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/dist/css/adminlte.css">
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/dist/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/dist/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="{{server_url()}}/op2/public/dist/css/animate.css">
+
+        <!-- jQuery -->
+        <script src="{{server_url()}}/op2/public/plugins/jquery/jquery.js"></script>
+        
+        <!-- popper -->
+        <script src="{{server_url()}}/op2/public/plugins/popper/popper.js"></script>
+        
+        <!-- Bootstrap 4 -->
+        <script src="{{server_url()}}/op2/public/plugins/bootstrap/js/bootstrap.js"></script>
+        
+        <!--<script src="template/dist/js/bootstrap-datepicker.min.js"></script>-->
+        <!-- daterangepicker -->
+        <script src="{{server_url()}}/op2/public/plugins/moment/moment.min.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="{{server_url()}}/op2/public/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        
+        <!-- DataTables -->
+        <script src="{{server_url()}}/op2/public/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="{{server_url()}}/op2/public/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/datatables.buttons.min.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/buttons.flash.min.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/jszip.min.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/pdfmake.min.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/vfs_fonts.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/buttons.html5.min.js"></script>
+        <script src="{{server_url()}}/op2/public/dist/js/buttons.print.min.js"></script>
+
+        <!-- Select2 -->
+        <script src="{{server_url()}}/op2/public/plugins/select2/js/select2.full.min.js"></script>
+        <!-- SweetAlert2 -->
+        <script src="{{server_url()}}/op2/public/plugins/sweetalert2/sweetalert2.min.js"></script>   
+
+        <!-- date picker 
+        <script src="../template/dist/js/bootstrap-datepicker.js"></script>-->
+        
+        <!-- AdminLTE App -->
+        <script src="{{server_url()}}/op2/public/dist/js/adminlte.js"></script>
+        <!-- <script src="../template/dist/js/demo.js"></script> -->
+
+        <script src="{{server_url()}}/op2/public/dist/js/custom.js"></script> 
+        
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body id="swup" class="transition-fade hold-transition sidebar-mini">
+        <div class="wrapper">
+            {% include 'default/navbar.html.twig' %}
+            {% include 'default/sidebar.html.twig' %}
+            <div>
+              <div id="myNav" class="op-overlay">
+                <div class="op-overlay-content">
+                  <a href="{{path('of_erh.index')}}">e-RH</a>
+                </div>
+              </div>
+            </div>           
+            <div class="content-wrapper"> 
+                <div class="content-header {{ app.request.getHost() == 'openflex.admin' ? 'bg-gray-dark' : 'bg-primary' }}">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <div class="">
+                                    <h4 class="titre">{% block titre_contenu %}{% endblock %}</h4></div>
+                                <div class="col-6 text-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animated fadeInUp delay-1s content op-content">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+            <script>
+                $('#openNav').on('click', function() {
+                  $('#myNav').toggleClass("op-overlay-open");
+                  $(document.body).toggleClass("menu-open");
+                });
+
+                // $('#closeNav').on('click', function() {
+                //   $('#myNav').removeClass("op-overlay-open");
+                // });
+            </script>
+            <!-- swup js -->
+    <script src="{{server_url()}}/op2/public/dist/js/datepicker.js"></script>
+    <script src="{{server_url()}}/op2/public/dist/js/datepicker.fr-FR.js"></script>
+    <script src="{{server_url()}}/op2/public/dist/js/date.js"></script>
+
+    <script type="text/javascript">
+
+        function init() {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+            //Initialize Datatables Elements
+            $('#example1').DataTable( {
+                "dom": 'lBfrtip',
+                "language": {
+                    "lengthMenu": "Afficher&nbsp; _MENU_ &nbsp;enregistrements par page",
+                    "zeroRecords": "Aucun enregistrements correspondants trouvés",
+                    "info": "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+                    "infoEmpty": "Aucun enregistrement disponible",
+                    "search": "Recherche :",
+                    "LoadingRecords": "Chargement...",
+                    "Processing":     "Traitement...",
+                    "paginate": {
+                      "first":      "Premier",
+                      "last":       "Dernier",
+                      "next":       "Suivant",
+                      "previous":   "Précédent"
+                    },
+                    "oAria": {
+                      "SortAscending":  ": activer pour trier la colonne par ordre croissant",
+                      "SortDescending": ": activer pour trier la colonne par ordre décroissant"
+                    },
+                    "select": {
+                      "rows": {
+                          "_": "%d lignes sélectionnées",
+                          "0": "Aucune ligne sélectionnée",
+                          "1": "1 ligne sélectionnée"
+                        }
+                    },
+                    "InfoFiltered":   "(filtré à partir de _MAX_ éléments au total)",
+                    "sInfoPostFix":    "",
+                    "sInfoThousands":  ","  
+                },
+                "buttons": [
+                    {
+                      extend:    'copyHtml5',
+                      text:      '<i class="far fa-copy"></i>',
+                      titleAttr: 'COPY',
+                      className: 'btn btn-outline-secondary'
+                    },
+                    {
+                        extend:    'excelHtml5',
+                        text:      '<i class="far fa-file-excel"></i>',
+                        titleAttr: 'EXCEL',
+                        className: 'btn btn-outline-secondary'
+                    },
+                    {
+                        extend:    'csvHtml5',
+                        text:      '<i class="far fa-file-alt"></i>',
+                        titleAttr: 'CSV',
+                        className: 'btn btn-outline-secondary'
+                    },
+                    {
+                        extend:    'pdfHtml5',
+                        text:      '<i class="far fa-file-pdf"></i>',
+                        titleAttr: 'PDF',
+                        className: 'btn btn-outline-secondary'
+                    },
+                    {
+                      extend:    'print',
+                      text:      '<i class="far fa-print"></i>',
+                      titleAttr: 'PRINT',
+                      className: 'btn btn-outline-secondary'
+                    }
+                ]
+            });
+            $('#example2').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    {
+                    extend:    'copyHtml5',
+                    text:      '<i class="far fa-copy"></i>',
+                    titleAttr: 'COPY',
+                    className: 'btn btn-outline-secondary'
+                    },
+                     {
+                      extend:    'excelHtml5',
+                      text:      '<i class="far fa-file-excel"></i>',
+                      titleAttr: 'EXCEL',
+                      className: 'btn btn-outline-secondary'
+                     },
+                     {
+                      extend:    'csvHtml5',
+                      text:      '<i class="far fa-file-alt"></i>',
+                      titleAttr: 'CSV',
+                      className: 'btn btn-outline-secondary'
+                     },
+                    {
+                      extend:    'pdfHtml5',
+                      text:      '<i class="far fa-file-pdf"></i>',
+                      titleAttr: 'PDF',
+                      className: 'btn btn-outline-secondary'
+                     },
+                    {
+                    extend:    'print',
+                    text:      '<i class="far fa-print"></i>',
+                    titleAttr: 'PRINT',
+                    className: 'btn btn-outline-secondary'
+                    }
+                ]
+            }); 
+            $('[data-toggle="datepicker_add"]').datepicker({
+                language: 'fr-FR',
+                disabled: 'false'
+            });
+            $('[data-toggle="datepicker_start"]').datepicker({
+                language: 'fr-FR',
+                disabled: 'false'
+            });
+            $('[data-toggle="datepicker_end"]').datepicker({
+                language: 'fr-FR',
+                disabled: 'false'
+            });
+        }
+        init();
+
+    </script>
+
+    {% block javascripts %}{% endblock %}
+
+    </body>
+</html>

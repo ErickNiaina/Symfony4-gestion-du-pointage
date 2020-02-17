@@ -1,0 +1,390 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pointage feuille temps{% endblock %}
+{% block titre_contenu %}Feuille de temps{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <form method="POST" id="searchFormList" action="{{path('generated_feuilleDeTemps')}}">
+            <div class="container-fluid">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.flashes('danger') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="animated fadeInUp delay-1s content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">                                        
+                                <div id="toLoad">
+                                    <div class="form-row"></div>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 feuille">
+                                            <div class="form-group">
+                                                <label for="employer" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <h4>Nom Employ&eacute;</h4></label>
+                                                    <select class="form-control select2 select2-hidden-accessible" style="width:100%;" name="fk_employer">
+                                                        {% if listTemp is defined %}
+                                                            <option value="{{listTemp[0].em_rowid}}">
+                                                                    {{listTemp[0].em_prenom}}   
+                                                            </option>
+                                                        {% elseif sessionName is defined %}
+                                                            <option value="{{sessionid}}">
+                                                                    {{ sessionName }}   
+                                                            </option>
+                                                        {% endif %}
+                                                            {% for employers in listEmployer %}
+                                                                <option value="{{employers.getrowid()}}">{{employers.getPrenom()}}</option>
+                                                            {% endfor %}   
+                                                    </select>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 feuille">
+                                            <div class="form-group">
+                                                <label for="Date_Fin" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                    <h4 class="Date_Fin">Choisir le mois</h4>
+                                                </label>
+                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="input-group" id="Date_Fin">
+                                                        <select class="select_mois" name = "month">
+                                                            <option  value="">
+                                                                {% if sessiondate is defined and sessiondate is not null %}
+                                                                    {{sessiondate}}
+                                                                {% else %}
+                                                                    Selected month
+                                                                {% endif%}
+                                                            </option>
+                                                            <option  value="01">Janvier</option>
+                                                            <option  value="02">Février</option>
+                                                            <option  value="03">Mars</option>
+                                                            <option  value="04">Avril</option>
+                                                            <option  value="05">Mai</option>
+                                                            <option  value="06">Juin</option>
+                                                            <option  value="07">Juillet</option>
+                                                            <option  value="08">Août</option>
+                                                            <option  value="09">Septembre</option>
+                                                            <option  value="10">Octobre</option>
+                                                            <option  value="11">Novembre</option>
+                                                            <option  value="12">Décembre</option-->
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" id="Date_Finday" name="Date_Finday" value="31">
+                                                <input type="hidden" id="Date_Finmonth" name="Date_Finmonth" value="01">
+                                                <input type="hidden" id="Date_Finyear" name="Date_Finyear" value="2020">
+                                                <input type="hidden" id="Date_Finhour" name="Date_Finhour" value="00">
+                                                <input type="hidden" id="Date_Finmin" name="Date_Finmin" value="00">
+                                                <div class="p-2" style="padding-left: 50px">
+                                                    <button class="dpInvisibleButtons datenowlink" id="Date_FinButtonNow" type="button" name="_useless" value="now" onClick="jQuery('#Date_Fin').val('14/01/2020');jQuery('#Date_Finday').val('14');jQuery('#Date_Finmonth').val('01');jQuery('#Date_Finyear').val('2020');">Maintenant</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 feuille">
+                                            <div class="form-group">
+                                                <label for="Date_Debut" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <h4 class="Date_Debut">Choisir l'année</h4>
+                                                </label>
+                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                    <div class="input-group" id="Date_start">
+                                                        <select class="select_year" name = "year">
+                                                            <option  value="">
+                                                                {% if sessionYear is defined and sessionYear is not null %}
+                                                                    {{sessionYear}}
+                                                                {% else %}
+                                                                    Selected year
+                                                                {% endif%}
+                                                            </option>
+                                                            <option  value="2019">2019</option>
+                                                            <option  value="2020">2020</option>
+                                                            <option  value="2021">2021</option>
+                                                            <option  value="2022">2022</option>
+                                                            <option  value="2023">2023</option>
+                                                            <option  value="2024">2024</option>
+                                                            <option  value="2025">2025</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="p-2" style="padding-left: 50px">
+                                                    <button class="dpInvisibleButtons datenowlink" id="Date_DebutButtonNow" type="button" name="_useless" value="now" onClick="jQuery('#Date_Debut').val('14/01/2020');jQuery('#Date_Debutday').val('14');jQuery('#Date_Debutmonth').val('01');jQuery('#Date_Debutyear').val('2020');">Maintenant</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Date de arrivee -->
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info"><i class="far fa-clock"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Heures normales</span>
+                                                <span class="info-box-number">{{heure_normal(heureTotal)}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info"><i class="far fa-clock"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Heures effectu&eacute;es</span>
+                                                <span class="info-box-number">
+                                                    {% if sommeTotalMinute is defined %}
+                                                        {{heure_minutes(sommeTotalMinute - totalSupli + hourholyday)}}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info"><i class="far fa-clock"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Heures supl&eacute;mentaires</span>
+                                                <span class="info-box-number">
+                                                    {% if totalSupli is defined%}
+                                                        {{heure_minutes(totalSupli + hourholyday)}}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-danger"><i class="fas fa-user-clock"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Nombre de retards</span>
+                                                <span class="info-box-number">
+                                                    {% if nbdelayMorn is defined  and nbdelayAft is null %}
+                                                        {{nbDelay}}
+                                                    {% elseif nbdelayMorn is defined and nbdelayAft is defined %}
+                                                        {{nbdelayMorn + nbdelayAft}}
+                                                    {% elseif nddelayAft is defined and nbdelayMorn is null %}
+                                                        {{nbdelayAft}}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon" style="background:#d35400;color:#fff;"><i class="fas fa-user-times"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Nombre d&#039;absences</span>
+                                                <span class="info-box-number" >
+                                                    {% if absent is defined %}
+                                                        {{absent}}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-success"><i class="fas fa-user-cog"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Nombre de cong&eacute;s</span>
+                                                <span class="info-box-number">
+                                                    {% if conge is defined %}
+                                                        {{conge}}
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-xs-6 mt-2 mb-4">
+                                        <button class="btn btn-secondary btn-sm" style="cursor: pointer;"><span></span>
+                                            <i class="material-icons" style="vertical-align:bottom">search</i> Rechercher </button>
+                                        <a type="button" class="btn  btn-secondary btn-sm ml-3" href="" style="color:white;" id="clearInput" title="Supprimer filtre">
+                                            <i class="material-icons" style="vertical-align:bottom">zoom_out</i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="listeEntrepot">
+                                    <table id="example2" class="table table-responsive-md table-condensed datatable" role="grid" aria-describedby="example2_info">
+                                        <thead>
+                                            <tr class="liste_titre">
+                                                <th></th>
+                                                <th class="liste_titre"><a href="">Fielddate</a></th>
+                                                <th class="liste_titre"><a href="">Du</a></th>
+                                                <th class="liste_titre"><a href="">A</a></th>
+                                                <th class="liste_titre"><a href="">Nom Employ&eacute;</a></th>
+                                                <th class="liste_titre"><a href="">Heures Effectu&eacute;es</a></th>
+                                                <th class="liste_titre"><a href="">Fieldetat</a></th>
+                                                <th class="liste_titre">Fielddescription</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if intervalDate is defined  and listOfTemp is not defined %}
+                                                {% for intervaldate in intervalDate %}
+                                                    <tr>
+                                                        {% if intervaldate.ft_description == "Retard aprem" or intervaldate.ft_description == "Retard matin" %}
+                                                            <td class="text-danger" style="font-size:19px;"><i class="fas fa-user-clock"></i></td>
+                                                        {% elseif intervaldate.ft_description == null %}
+                                                            <td style="font-size:19px;"><i class="fas fa-user"></i></td>
+                                                        {% elseif intervaldate.ft_description == "Absent" %}
+                                                            <td style="font-size:19px;color:#d35400;"><i class="fas fa-user-times"></i></td> 
+                                                        {% elseif intervaldate.ft_description == "Jour Ferié ou week end" %}
+                                                            <td class="text-primary" style="font-size:19px;"><i class="fas fa-user-lock"></i></td>
+                                                        {% elseif intervaldate.ft_description == "Congé" %}
+                                                            <td class="text-success" style="font-size:19px;"><i class="fas fa-user-cog"></i></td>
+                                                        {% else %}
+                                                            <td class="text-dark" style="font-size:19px;"><i class="fas fa-user-check"></i></td>
+                                                        {% endif %}
+                                                        <td>{{intervaldate.ft_date|date("d/m/Y")}}</td>
+                                                        <td>{{intervaldate.ft_pointageArrivee is not null ? intervaldate.ft_pointageArrivee|date("d/m/Y H:i:s") : intervaldate.ft_pointageArrivee}}</td>
+                                                        <td>
+                                                            {{intervaldate.ft_pointageDepart  is not null ? intervaldate.ft_pointageDepart |date("d/m/Y H:i:s") : intervaldate.ft_pointageDepart }}
+                                                        </td>
+                                                        <td>{{intervaldate.em_prenom}}</td>
+                                                        <td>{{heure_minutes(intervaldate.ft_totalMinute)}}</td>
+                                                        <td>
+                                                            {% for etat_value in intervaldate.ft_etat %}
+                                                                {{etat_value }}
+                                                            {% endfor %}
+                                                        </td>
+                                                        <td>{{intervaldate.ft_description}}</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+
+                                            {% if listOfTemp is defined %}
+
+                                                {% for list in listOfTemp %}
+                                                    
+                                                    <tr>
+                                                        {% if list.ft_description == "Retard aprem" or list.ft_description == "Retard matin" %}
+                                                            <td class="text-danger" style="font-size:19px;"><i class="fas fa-user-clock"></i></td>
+                                                        {% elseif list.ft_description == null %}
+                                                            <td style="font-size:19px;"><i class="fas fa-user"></i></td>
+                                                        {% elseif list.ft_description == "Absent" %}
+                                                            <td style="font-size:19px;color:#d35400;"><i class="fas fa-user-times"></i></td> 
+                                                        {% elseif list.ft_description == "Jour Ferié ou week end" %}
+                                                            <td class="text-primary" style="font-size:19px;"><i class="fas fa-user-lock"></i></td>
+                                                        {% elseif list.ft_description == "Congé" %}
+                                                            <td class="text-success" style="font-size:19px;"><i class="fas fa-user-cog"></i></td>
+                                                        {% else %}
+                                                            <td class="text-dark" style="font-size:19px;"><i class="fas fa-user-check"></i></td>
+                                                        {% endif %}
+                                                        <td>{{list.ft_date|date("d/m/Y")}}</td>
+                                                        <td>
+                                                            {{list.ft_pointageArrivee is not null ? list.ft_pointageArrivee|date("d/m/Y H:i:s") : list.ft_pointageArrivee}}
+                                                        </td>
+                                                        <td>
+                                                            {{list.ft_pointageDepart  is not null ? list.ft_pointageDepart |date("d/m/Y H:i:s") : list.ft_pointageDepart }}
+                                                        </td>
+                                                        <td>{{list.em_prenom}}</td>
+                                                        <td>{{heure_minutes(list.ft_totalMinute)}}</td>
+                                                        <td>
+                                                            {% for etat_value in list.ft_etat %}
+                                                                {{etat_value }}
+                                                            {% endfor %}
+                                                        </td>
+                                                        <td>{{list.ft_description}}</td>
+                                                    </tr>
+
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            {% if listTemp is defined %}
+                                               
+                                               {% for listtemp in listTemp %}
+                                                    
+                                                    <tr>
+                                                        {% if listtemp.ft_description == "Retard aprem" or listtemp.ft_description == "Retard matin" %}
+                                                            <td class="text-danger" style="font-size:19px;"><i class="fas fa-user-clock"></i></td>
+                                                        {% elseif listtemp.ft_description == null %}
+                                                            <td style="font-size:19px;"><i class="fas fa-user"></i></td>
+                                                        {% elseif listtemp.ft_description == "Absent" %}
+                                                            <td style="font-size:19px;color:#d35400;"><i class="fas fa-user-times"></i></td> 
+                                                        {% elseif listtemp.ft_description == "Jour Ferié ou week end" %}
+                                                            <td class="text-primary" style="font-size:19px;"><i class="fas fa-user-lock"></i></td>
+                                                        {% elseif listtemp.ft_description == "Congé" %}
+                                                            <td class="text-success" style="font-size:19px;"><i class="fas fa-user-cog"></i></td>
+                                                        {% else %}
+                                                            <td class="text-dark" style="font-size:19px;"><i class="fas fa-user-check"></i></td>
+                                                        {% endif %}
+                                                        <td>{{listtemp.ft_date|date("d/m/Y")}}</td>
+                                                        <td>
+                                                            {{listtemp.ft_pointageArrivee is not null ? listtemp.ft_pointageArrivee|date("d/m/Y H:i:s") : listtemp.ft_pointageArrivee}}
+                                                        </td>
+                                                        <td>
+                                                            {{listtemp.ft_pointageDepart  is not null ? listtemp.ft_pointageDepart |date("d/m/Y H:i:s") : listtemp.ft_pointageDepart }}
+                                                        </td>
+                                                        <td>{{listtemp.em_prenom}}</td>
+                                                        <td>{{heure_minutes(listtemp.ft_totalMinute)}}</td>
+                                                        <td>
+                                                            {% for etat_value in listtemp.ft_etat %}
+                                                                {{etat_value }}
+                                                            {% endfor %}
+                                                        </td>
+                                                        <td>{{listtemp.ft_description}}</td>
+                                                    </tr>
+
+                                                {% endfor %}
+                                            
+                                            {% endif %}
+                                                    <input type="hidden" id="RetardHide" value=2/>
+                                                    <input type="hidden" id="AbsentHide" value=9/>
+                                                    <input type="hidden" id="CongeHide" value=0/>
+                                                    <script>
+                                                        var Retard = parseInt($("input[type=hidden]#RetardHide").val());
+                                                        var Absent = parseInt($("input[type=hidden]#AbsentHide").val());
+                                                        var Conge = parseInt($("input[type=hidden]#CongeHide").val());
+                                                        $("#Retard").text(Retard);
+                                                        $("#Absent").text(Absent);
+                                                        $("#Conge").text(Conge);
+                                                    </script>
+                                            
+                                            
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="bg-success text-light" style="color:#f8f9fa !important;">
+                                                <td colspan="5">TOTAL</td>
+                                                <td class="nowrap">
+                                                    <input type="hidden" name="total" value="17h 18min">
+                                                    {% if sommeTotalMinute is defined %}
+                                                        {{heure_minutes(sommeTotalMinute)}}
+                                                    {% endif %}
+                                                    </input>
+                                                </td>
+                                                <td colspan="2">&nbsp;</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

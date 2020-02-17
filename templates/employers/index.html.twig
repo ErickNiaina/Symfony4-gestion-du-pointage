@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Listes des Employés</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                  <table id="example1" class="table table-responsive-md table-condensed" role="grid">
+                    <thead>
+                        <tr>
+                            <th>Rowid</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Tél</th>
+                            <th>Situation Matrimoniale</th>
+                            <th>Sexe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for list in listOfEmployers %}
+                            <tr>
+                                <td>{{ list.getRowid() }}</td>
+                                <td>{{ list.getNom() }}</td>
+                                <td>{{ list.getPrenom }}</td>
+                                <td>{{ list.getEmailProfessionnel() }}</td>
+                                <td>{{ list.getTelProfessionnel() }}</td>
+                                <td>{{ list.getSituationMatrimonial }}</td>
+                                <td> {{ list.getsexe() }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="60">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

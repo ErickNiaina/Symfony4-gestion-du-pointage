@@ -1,0 +1,157 @@
+<?php //%255BApp%255CEntity%255CRightsDef%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\RightsDef',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\RightsDef',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\RightsDefRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                    'entity',
+                ],
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'id',
+                        'id' => true,
+                    ],
+                    'entity' => [
+                        'fieldName' => 'entity',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'default' => '1',
+                        ],
+                        'columnName' => 'entity',
+                        'id' => true,
+                    ],
+                    'libelle' => [
+                        'fieldName' => 'libelle',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'libelle',
+                    ],
+                    'module' => [
+                        'fieldName' => 'module',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 64,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'module',
+                    ],
+                    'perms' => [
+                        'fieldName' => 'perms',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 50,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'perms',
+                    ],
+                    'subperms' => [
+                        'fieldName' => 'subperms',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 50,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'subperms',
+                    ],
+                    'type' => [
+                        'fieldName' => 'type',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 1,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'type',
+                    ],
+                    'bydefault' => [
+                        'fieldName' => 'bydefault',
+                        'type' => 'boolean',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'bydefault',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'entity' => 'entity',
+                    'libelle' => 'libelle',
+                    'module' => 'module',
+                    'perms' => 'perms',
+                    'subperms' => 'subperms',
+                    'type' => 'type',
+                    'bydefault' => 'bydefault',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'entity' => 'entity',
+                    'libelle' => 'libelle',
+                    'module' => 'module',
+                    'perms' => 'perms',
+                    'subperms' => 'subperms',
+                    'type' => 'type',
+                    'bydefault' => 'bydefault',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'llx_rights_def',
+                ],
+            ],
+            'isIdentifierComposite' => [
+                true,
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

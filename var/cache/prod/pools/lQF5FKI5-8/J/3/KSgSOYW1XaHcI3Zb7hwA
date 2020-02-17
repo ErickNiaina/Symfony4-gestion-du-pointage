@@ -1,0 +1,62 @@
+<?php //%255BApp%255CEntity%255CUserOrigin%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Index'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Index')),
+        clone ($p['Doctrine\\ORM\\Mapping\\UniqueConstraint'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\UniqueConstraint')),
+        clone $p['Doctrine\\ORM\\Mapping\\UniqueConstraint'],
+        clone $p['Doctrine\\ORM\\Mapping\\UniqueConstraint'],
+        clone $p['Doctrine\\ORM\\Mapping\\UniqueConstraint'],
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'user_origin',
+                'idx_user_fk_societe',
+                'uk_user_login',
+                'uk_user_fk_socpeople',
+                'uk_user_api_key',
+                'uk_user_fk_member',
+            ],
+            'indexes' => [
+                [
+                    $o[1],
+                ],
+            ],
+            'uniqueConstraints' => [
+                [
+                    $o[2],
+                    $o[3],
+                    $o[4],
+                    $o[5],
+                ],
+            ],
+            'columns' => [
+                1 => [
+                    'fk_soc',
+                ],
+                [
+                    'login',
+                    'entity',
+                ],
+                [
+                    'fk_socpeople',
+                ],
+                [
+                    'api_key',
+                ],
+                [
+                    'fk_member',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[6],
+    ],
+    []
+); }];

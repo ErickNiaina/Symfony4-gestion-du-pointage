@@ -1,0 +1,169 @@
+<?php //%255BApp%255CEntity%255CConstP%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\ConstP',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\ConstP',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\ConstRepository',
+            ],
+            'identifier' => [
+                [
+                    'rowid',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'rowid' => [
+                        'fieldName' => 'rowid',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'rowid',
+                        'id' => true,
+                    ],
+                    'name' => [
+                        'fieldName' => 'name',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'name',
+                    ],
+                    'entity' => [
+                        'fieldName' => 'entity',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'default' => '1',
+                        ],
+                        'columnName' => 'entity',
+                    ],
+                    'value' => [
+                        'fieldName' => 'value',
+                        'type' => 'text',
+                        'scale' => 0,
+                        'length' => 65535,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'value',
+                    ],
+                    'type' => [
+                        'fieldName' => 'type',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 6,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'type',
+                    ],
+                    'visible' => [
+                        'fieldName' => 'visible',
+                        'type' => 'boolean',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'default' => '1',
+                        ],
+                        'columnName' => 'visible',
+                    ],
+                    'note' => [
+                        'fieldName' => 'note',
+                        'type' => 'text',
+                        'scale' => 0,
+                        'length' => 65535,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'note',
+                    ],
+                    'tms' => [
+                        'fieldName' => 'tms',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'default' => 'CURRENT_TIMESTAMP',
+                        ],
+                        'columnName' => 'tms',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'rowid' => 'rowid',
+                    'name' => 'name',
+                    'entity' => 'entity',
+                    'value' => 'value',
+                    'type' => 'type',
+                    'visible' => 'visible',
+                    'note' => 'note',
+                    'tms' => 'tms',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'rowid' => 'rowid',
+                    'name' => 'name',
+                    'entity' => 'entity',
+                    'value' => 'value',
+                    'type' => 'type',
+                    'visible' => 'visible',
+                    'note' => 'note',
+                    'tms' => 'tms',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'llx_const',
+                    'uniqueConstraints' => [
+                        'uk_const' => [
+                            'columns' => [
+                                'name',
+                                'entity',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];
